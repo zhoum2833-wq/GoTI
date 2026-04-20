@@ -14,31 +14,70 @@
 
 ## 🚀 快速开始
 
-### 本地开发
+### Windows 本地运行
 
+**方式一：双击运行（推荐）**
+```
+双击 start-local.bat
+```
+
+**方式二：PowerShell**
+```powershell
+.\start-local.ps1
+```
+
+**方式三：命令行**
 ```bash
-# 安装依赖
 npm install
-
-# 启动开发服务器
 npm run dev
 ```
 
 访问 http://localhost:3000
 
-### 生产构建
+### Linux/Mac 本地运行
 
 ```bash
-# 构建生产版本
-npm run build
+# 添加执行权限
+chmod +x start-local.sh
 
-# 预览生产版本
-npm run preview
+# 运行脚本
+./start-local.sh
+```
+
+### 生产构建
+
+**Windows:**
+```
+双击 build.bat
+```
+
+**Linux/Mac:**
+```bash
+npm run build
 ```
 
 ## 📦 服务器部署
 
-### 方式一：使用 PM2（推荐）
+### 一键部署（推荐）
+
+```bash
+# 添加执行权限
+chmod +x deploy.sh
+
+# 运行部署脚本
+./deploy.sh
+```
+
+部署脚本会自动：
+- ✅ 检查并安装 Node.js
+- ✅ 安装项目依赖
+- ✅ 构建生产版本
+- ✅ 使用 PM2 启动服务
+- ✅ 配置开机自启
+
+### 手动部署
+
+#### 方式一：使用 PM2
 
 ```bash
 # 1. 安装 PM2
@@ -57,7 +96,7 @@ pm2 save
 pm2 startup
 ```
 
-### 方式二：使用 Nginx
+#### 方式二：使用 Nginx
 
 ```bash
 # 1. 构建项目
@@ -82,6 +121,30 @@ server {
 }
 ```
 
+## 📁 项目结构
+
+```
+GoTI/
+├── src/                    # 源代码
+│   ├── api/               # API 接口
+│   ├── components/        # React 组件
+│   ├── config/           # 配置文件
+│   ├── data/             # 静态数据
+│   └── services/         # 数据服务
+├── mock-server/           # API 模拟服务器（可选）
+├── dist/                  # 构建输出（部署用）
+├── start-local.bat        # Windows 一键启动 ⭐
+├── start-local.ps1        # PowerShell 启动脚本
+├── start-local.sh         # Linux/Mac 启动脚本
+├── build.bat              # Windows 构建脚本
+├── deploy.sh              # 服务器部署脚本 ⭐
+├── .env.development       # 开发环境配置
+├── .env.production        # 生产环境配置
+├── .env.example           # 配置模板
+├── package.json           # 项目配置
+└── vite.config.js         # Vite 配置
+```
+
 ## 🔧 配置说明
 
 ### 环境变量
@@ -104,22 +167,6 @@ VITE_API_BASE_URL=http://your-api-server:3001/api
 - `.env.development` - 开发环境配置
 - `.env.production` - 生产环境配置
 - `.env.example` - 配置模板
-
-## 📁 项目结构
-
-```
-GoTI/
-├── src/
-│   ├── api/              # API 接口
-│   ├── components/       # React 组件
-│   ├── config/          # 配置文件
-│   ├── data/            # 静态数据
-│   └── services/        # 数据服务
-├── mock-server/         # API 模拟服务器（可选）
-├── dist/               # 构建输出（部署用）
-├── package.json        # 项目配置
-└── vite.config.js      # Vite 配置
-```
 
 ## 🛠️ 技术栈
 
